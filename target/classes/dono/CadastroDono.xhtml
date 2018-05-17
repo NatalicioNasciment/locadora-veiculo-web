@@ -1,0 +1,43 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:o="http://omnifaces.org/ui">
+
+    <ui:define name="titulo">Novo fabricante</ui:define>
+    
+    <ui:define name="corpo">
+    	<f:metadata>
+			<o:viewParam name="dono" value="#{cadastroDonoBean.dono}" />
+		</f:metadata>
+    
+    	<h1>Cadastro Dono</h1>
+    	
+    	<h:form id="frmCadastro">
+    		<p:messages id="messages" autoUpdate="true" closable="true" />
+
+	    	<p:toolbar style="margin-top: 20px">
+	    		<p:toolbarGroup>
+	    			<p:commandButton value="Salvar" id="botaoSalvar" action="#{cadastroDonoBean.salvar}" update="frmCadastro"/>
+	    		</p:toolbarGroup>
+	    		<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/dono/PesquisaDono"/>
+				</p:toolbarGroup>
+	    	</p:toolbar>
+	    	
+	    	<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
+	    			columnClasses="rotulo, campo">
+	    		<p:outputLabel value="Nome" for="nome"/>
+	    		<p:inputText id="nome" size="20" maxlength="20" value="#{cadastroDonoBean.dono.nome}" />
+	    		
+	    		<p:outputLabel value="Carro: " for="carro"/>
+	    		<p:selectOneMenu value="#{cadastroDonoBean.dono.carro}" id="carro" required="true" requiredMessage="O campo é obrigatório">
+	    			<f:selectItem itemLabel="Selecione o carro"/>
+	    			<f:selectItems value="#{cadastroDonoBean.carros}" var="carro" itemLabel="#{carro.modeloCarro.descricao}" itemValue="#{carro}"/>
+	    		</p:selectOneMenu>
+	    	</p:panelGrid>
+    	</h:form>
+    </ui:define>
+</ui:composition>

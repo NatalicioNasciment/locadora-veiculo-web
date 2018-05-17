@@ -1,0 +1,4 @@
+- editar acessorio
+- editar e remover carro e melhorar o layout.
+-criar a listagem de alugueis.*
+obs : adicionar o action do confirmDialog da tela pesquisa carros
